@@ -72,29 +72,29 @@ export default function LoginPage() {
 
   if (authLoading || user) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center bg-background">
         <p>Carregando...</p>
       </div>
     );
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center p-4 sm:p-6 md:p-8">
+    <main className="flex min-h-screen items-center justify-center bg-background p-4 sm:p-6 md:p-8">
       <div className="w-full max-w-md">
-        <Card className="rounded-xl shadow-2xl">
+        <Card className="rounded-xl shadow-2xl border-accent/20 bg-secondary">
           <CardHeader className="p-0">
             <Image
-              src="https://placehold.co/600x300.png"
-              data-ai-hint="book cover"
-              alt="Capa do produto Profecias Bíblicas e o Apocalipse"
+              src="https://placehold.co/600x400.png"
+              data-ai-hint="man suit charisma"
+              alt="O Poder do Carisma"
               width={600}
-              height={300}
+              height={400}
               className="rounded-t-xl object-cover"
             />
           </CardHeader>
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4 p-6">
-              <CardTitle className="text-center text-2xl font-bold">
+              <CardTitle className="text-center text-2xl font-bold text-primary">
                 {isLogin ? "Acessar Plataforma" : "Criar Conta"}
               </CardTitle>
               <div className="space-y-2">
@@ -106,6 +106,7 @@ export default function LoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className="bg-background"
                 />
               </div>
               <div className="space-y-2">
@@ -117,9 +118,10 @@ export default function LoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  className="bg-background"
                 />
               </div>
-              <Button type="submit" className="w-full bg-accent hover:bg-accent/90" disabled={isLoading}>
+              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold" disabled={isLoading}>
                 {isLoading ? "Carregando..." : isLogin ? "Entrar" : "Criar conta"}
               </Button>
             </CardContent>
@@ -128,17 +130,17 @@ export default function LoginPage() {
                 variant="link"
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
-                className="text-primary"
+                className="text-accent"
               >
                 {isLogin
                   ? "Não tem uma conta? Criar agora"
                   : "Já tem uma conta? Fazer login"}
               </Button>
               <Link
-                href="https://ebooksexpress.shop/pba"
+                href="https://seusite.com/produto"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground underline hover:text-primary"
+                className="text-sm text-muted-foreground underline hover:text-accent"
               >
                 Ainda não é cliente? Clique aqui
               </Link>

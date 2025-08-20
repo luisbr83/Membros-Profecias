@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Bonus } from "@/lib/types";
-import { Download, PlayCircle } from "lucide-react";
+import { Download } from "lucide-react";
 
 interface DashboardContentProps {
   selectedBonus: Bonus | null;
@@ -10,20 +10,20 @@ interface DashboardContentProps {
 export default function DashboardContent({ selectedBonus }: DashboardContentProps) {
   if (!selectedBonus) {
     return (
-      <div className="flex items-center justify-center h-full">
-        <Card className="w-full max-w-lg text-center p-8 rounded-xl shadow-lg">
-          <CardTitle className="text-2xl mb-2">Bem-vindo(a) à sua Área de Membros!</CardTitle>
-          <p className="text-muted-foreground">
-            Selecione um item na barra lateral para começar.
+      <div className="flex items-center justify-center h-full text-center">
+        <div className="space-y-4">
+          <h1 className="text-3xl font-bold">Bem-vindo(a) ao <span className="text-primary">Poder do Carisma</span>!</h1>
+          <p className="text-muted-foreground max-w-md mx-auto">
+            Selecione um módulo na barra lateral para iniciar sua jornada de transformação e se tornar uma pessoa mais magnética e influente.
           </p>
-        </Card>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="animate-in fade-in duration-500">
-      <Card className="rounded-xl shadow-lg overflow-hidden">
+      <Card className="rounded-xl shadow-lg overflow-hidden bg-secondary border border-accent/20">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-primary">
             {selectedBonus.content.title}
@@ -36,19 +36,19 @@ export default function DashboardContent({ selectedBonus }: DashboardContentProp
 
           {selectedBonus.type === "pdf" && selectedBonus.content.url && (
             <a href={selectedBonus.content.url} download>
-              <Button size="lg" className="bg-accent hover:bg-accent/90">
+              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
                 <Download className="mr-2 h-5 w-5" />
-                Baixar PDF
+                Baixar Ebook
               </Button>
             </a>
           )}
 
           {selectedBonus.type === "video" && selectedBonus.content.url && (
-            <div className="aspect-video w-full">
+            <div className="aspect-video w-full rounded-lg overflow-hidden border-2 border-primary shadow-2xl shadow-primary/20">
               <iframe
-                className="w-full h-full rounded-lg"
+                className="w-full h-full"
                 src={selectedBonus.content.url}
-                title="YouTube video player"
+                title="Player de vídeo"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
