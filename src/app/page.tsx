@@ -94,7 +94,7 @@ export default function LoginPage() {
           </CardHeader>
           <form onSubmit={handleSubmit}>
             <CardContent className="space-y-4 p-6">
-              <CardTitle className="text-center text-2xl font-bold text-primary">
+              <CardTitle className="text-center text-2xl font-bold text-white">
                 {isLogin ? "Acessar Plataforma" : "Criar Conta"}
               </CardTitle>
               <div className="space-y-2">
@@ -121,7 +121,7 @@ export default function LoginPage() {
                   className="bg-background"
                 />
               </div>
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold" disabled={isLoading}>
+              <Button type="submit" className="w-full bg-black hover:bg-black/90 text-white font-bold" disabled={isLoading}>
                 {isLoading ? "Carregando..." : isLogin ? "Entrar" : "Criar conta"}
               </Button>
             </CardContent>
@@ -137,7 +137,7 @@ export default function LoginPage() {
                   : "Já tem uma conta? Fazer login"}
               </Button>
               <Link
-                href="#"
+                href="https://ebooksexpress.shop/pba"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground underline hover:text-accent"

@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Bonus } from "@/lib/types";
@@ -12,7 +13,7 @@ export default function DashboardContent({ selectedBonus }: DashboardContentProp
     return (
       <div className="flex items-center justify-center h-full text-center">
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold">Bem-vindo(a) à <span className="text-primary">Apocalypse Academy</span>!</h1>
+          <h1 className="text-3xl font-bold">Bem-vindo(a) à <span className="text-primary">Profecias Bíblicas e o Apocalipse</span>!</h1>
           <p className="text-muted-foreground max-w-md mx-auto">
             Selecione um módulo na barra lateral para iniciar sua preparação para o fim dos tempos.
           </p>
@@ -35,12 +36,13 @@ export default function DashboardContent({ selectedBonus }: DashboardContentProp
           </p>
 
           {selectedBonus.type === "pdf" && selectedBonus.content.url && (
-            <a href={selectedBonus.content.url} download>
-              <Button size="lg" className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold">
-                <Download className="mr-2 h-5 w-5" />
-                Baixar PDF
-              </Button>
-            </a>
+            <div className="aspect-video w-full">
+               <iframe 
+                src={`${selectedBonus.content.url}#toolbar=0`} 
+                className="w-full h-full rounded-lg border-2 border-primary shadow-2xl shadow-primary/20"
+                allowFullScreen
+              ></iframe>
+            </div>
           )}
 
           {selectedBonus.type === "video" && selectedBonus.content.url && (

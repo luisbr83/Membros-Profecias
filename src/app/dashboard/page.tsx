@@ -1,48 +1,45 @@
+
 "use client";
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { Menu, X } from "lucide-react";
+import { LogOut, X, Maximize, FileText, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import DashboardSidebar from "@/components/dashboard-sidebar";
-import DashboardContent from "@/components/dashboard-content";
-import type { Bonus } from "@/lib/types";
 import { useToast } from "@/hooks/use-toast";
+import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
 
-const bonuses: Bonus[] = [
+interface ContentItem {
+  id: number;
+  title: string;
+  image: string;
+  imageHint: string;
+  pdfUrl: string;
+}
+
+const contentItems: ContentItem[] = [
   {
     id: 1,
-    title: "Bônus 1: Guia de Sobrevivência",
-    image: "https://placehold.co/300x200.png",
-    imageHint: "survival guide",
-    type: "pdf",
-    content: {
-      title: "Guia de Sobrevivência do Apocalipse",
-      description: "Um guia completo com tudo que você precisa saber para sobreviver aos fins dos tempos.",
-      url: "/guia-sobrevivencia.pdf",
-    },
+    title: "Profecias Bíblicas e o Apocalipse",
+    image: "https://i.imgur.com/cmcoLd8.png",
+    imageHint: "man suit charisma",
+    pdfUrl: "/placeholder.pdf",
   },
   {
     id: 2,
-    title: "Bônus 2: Mapa dos Abrigos",
-    image: "https://placehold.co/300x200.png",
-    imageHint: "shelter map",
-    type: "video",
-    content: {
-      title: "Mapa Interativo dos Abrigos Secretos",
-      description: "Descubra a localização dos abrigos mais seguros para se proteger durante o apocalipse.",
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
+    title: "Bônus Exclusivo: Compreendendo o livro do apocalipse",
+    image: "https://placehold.co/600x400.png",
+    imageHint: "ancient book scripture",
+    pdfUrl: "/placeholder-bonus.pdf",
   },
 ];
 
 export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
-  const [selectedBonus, setSelectedBonus] = useState<Bonus | null>(bonuses[0] || null);
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedPdf, setSelectedPdf] = useState<ContentItem | null>(null);
   const router = useRouter();
   const { toast } = useToast();
 
@@ -70,13 +67,6 @@ export default function DashboardPage() {
       });
     }
   };
-
-  const handleSelectBonus = (bonus: Bonus) => {
-    setSelectedBonus(bonus);
-    if (window.innerWidth < 1024) {
-      setSidebarOpen(false);
-    }
-  };
   
   if (loading) {
     return (
@@ -86,29 +76,91 @@ export default function DashboardPage() {
     );
   }
 
-  return (
-    <div className="flex h-screen bg-background text-foreground">
-      <div className={`fixed inset-0 z-50 lg:hidden ${sidebarOpen ? 'block' : 'hidden'}`} onClick={() => setSidebarOpen(false)}></div>
-      <div className={`fixed lg:relative z-50 h-full transition-transform transform ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} lg:translate-x-0`}>
-         <DashboardSidebar
-          bonuses={bonuses}
-          onSelectBonus={handleSelectBonus}
-          onLogout={handleLogout}
-          selectedBonusId={selectedBonus?.id}
-        />
-      </div>
-     
-      <main className="flex-1 flex flex-col overflow-y-auto">
-         <div className="lg:hidden p-4 flex justify-between items-center border-b border-border bg-secondary">
-          <h1 className="text-xl font-bold text-primary">Apocalypse Academy</h1>
-          <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
-            {sidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+  if (selectedPdf) {
+    return (
+      <div className="flex flex-col h-screen bg-background text-foreground">
+        <header className="flex items-center justify-between p-4 border-b border-border bg-secondary flex-shrink-0">
+          <Button variant="ghost" onClick={() => setSelectedPdf(null)}>
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Voltar
           </Button>
-        </div>
-        <div className="p-4 sm:p-6 md:p-8">
-           <DashboardContent selectedBonus={selectedBonus} />
+          <h1 className="text-lg font-semibold text-center truncate px-4">
+            {selectedPdf.title}
+          </h1>
+          <Button
+            variant="ghost"
+            onClick={() => {
+              const iframe = document.getElementById("pdf-iframe") as HTMLIFrameElement;
+              if (iframe && iframe.requestFullscreen) {
+                iframe.requestFullscreen();
+              }
+            }}
+          >
+            <Maximize className="mr-2 h-4 w-4" />
+            Tela Cheia
+          </Button>
+        </header>
+        <main className="flex-1 overflow-hidden">
+          <iframe
+            id="pdf-iframe"
+            src={selectedPdf.pdfUrl}
+            className="w-full h-full border-0"
+            title={selectedPdf.title}
+            allowFullScreen
+          ></iframe>
+        </main>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <header className="flex items-center justify-between p-4 border-b border-border bg-secondary">
+        <h1 className="text-xl md:text-2xl font-bold text-primary truncate">
+          Profecias Bíblicas e o Apocalipse
+        </h1>
+        <Button
+          variant="outline"
+          className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+          onClick={handleLogout}
+        >
+          <LogOut className="mr-2 h-4 w-4" />
+          Sair
+        </Button>
+      </header>
+      <main className="flex-1 p-4 sm:p-6 md:p-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+          {contentItems.map((item) => (
+            <Card
+              key={item.id}
+              onClick={() => setSelectedPdf(item)}
+              className="group rounded-xl shadow-lg overflow-hidden bg-secondary border border-accent/20 cursor-pointer transition-all duration-300 hover:border-primary hover:shadow-primary/20 hover:-translate-y-1"
+            >
+              <div className="relative">
+                <Image
+                  src={item.image}
+                  data-ai-hint={item.imageHint}
+                  alt={item.title}
+                  width={600}
+                  height={400}
+                  className="object-cover w-full h-auto aspect-video transition-transform duration-300 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                   <FileText className="h-16 w-16 text-white/50 group-hover:text-white/80 transition-opacity" />
+                </div>
+              </div>
+              <CardContent className="p-6">
+                <h2 className="text-xl font-bold text-center text-foreground group-hover:text-primary transition-colors">
+                  {item.title}
+                </h2>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </main>
+       <footer className="text-center p-4 text-sm text-muted-foreground border-t border-border mt-auto">
+          <p>&copy; {new Date().getFullYear()} Profecias Bíblicas e o Apocalipse. Todos os direitos reservados.</p>
+       </footer>
     </div>
   );
 }
