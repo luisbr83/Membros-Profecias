@@ -120,12 +120,13 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="flex items-center justify-between p-4 border-b border-border bg-secondary">
-        <h1 className="text-xl md:text-2xl font-bold text-white truncate">
-          Seja Bem-vindo (a)
-        </h1>
+        <div className="text-sm text-white">
+          <p className="font-bold text-base">Bem-vindo(a) à sua área de membros!</p>
+          <p>Estamos felizes em ter você aqui. Aproveite todo o conteúdo exclusivo preparado para o seu crescimento.</p>
+        </div>
         <Button
           variant="outline"
-          className="border-accent text-accent hover:bg-accent hover:text-accent-foreground"
+          className="border-accent text-accent hover:bg-accent hover:text-accent-foreground flex-shrink-0"
           onClick={handleLogout}
         >
           <LogOut className="mr-2 h-4 w-4" />
@@ -159,6 +160,11 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+        <div className="text-center mt-8 text-sm text-muted-foreground px-4">
+            <p className="font-semibold">Precisa de ajuda?</p>
+            <p>Entre em contato com nossa equipe pelo e-mail: <a href="mailto:suporte@ebooksexpress.shop" className="text-accent underline">suporte@ebooksexpress.shop</a>.</p>
+            <p>Estamos prontos para te atender!</p>
         </div>
       </main>
        <footer className="text-center p-4 text-sm text-muted-foreground border-t border-border mt-auto">
