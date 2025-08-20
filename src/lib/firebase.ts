@@ -3,12 +3,13 @@ import { getAuth } from "firebase/auth";
 
 // ATENÇÃO: Substitua os valores abaixo pelas suas credenciais do Firebase
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_AUTH_DOMAIN",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_STORAGE_BUCKET",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  projectId: "apocalypse-academy",
+  appId: "1:868420666689:web:b40b3c7c5e42939c9e8dc0",
+  storageBucket: "apocalypse-academy.firebasestorage.app",
+  apiKey: "AIzaSyATNYQAVvpogL6Wj61PfFogF6lr26JETbY",
+  authDomain: "apocalypse-academy.firebaseapp.com",
+  measurementId: "",
+  messagingSenderId: "868420666689"
 };
 
 // Inicializa o Firebase
