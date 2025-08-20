@@ -29,8 +29,8 @@ const contentItems: ContentItem[] = [
   },
   {
     id: 2,
-    title: "Bônus Exclusivo: Compreendendo o livro do apocalipse",
-    image: "https://placehold.co/600x400.png",
+    title: "Compreendendo o Livro do Apocalipse",
+    image: "https://i.imgur.com/TCZkfFo.png",
     imageHint: "ancient book scripture",
     pdfUrl: "/placeholder-bonus.pdf",
   },
@@ -116,7 +116,7 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="flex items-center justify-between p-4 border-b border-border bg-secondary">
-        <h1 className="text-xl md:text-2xl font-bold text-foreground truncate">
+        <h1 className="text-xl md:text-2xl font-bold text-white truncate">
           Seja Bem-vindo (a)
         </h1>
         <Button
@@ -134,7 +134,7 @@ export default function DashboardPage() {
             <Card
               key={item.id}
               onClick={() => setSelectedPdf(item)}
-              className="group rounded-xl shadow-lg overflow-hidden bg-secondary border border-accent/20 cursor-pointer transition-all duration-300 hover:border-primary hover:shadow-primary/20 hover:-translate-y-1"
+              className="group rounded-xl shadow-lg overflow-hidden bg-secondary border border-accent/20 cursor-pointer transition-all duration-300 hover:border-accent hover:shadow-accent/20 hover:-translate-y-1"
             >
               <div className="relative">
                 <Image
@@ -146,11 +146,10 @@ export default function DashboardPage() {
                   className="object-cover w-full h-auto aspect-video transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
-                   <FileText className="h-16 w-16 text-white/50 group-hover:text-white/80 transition-opacity" />
                 </div>
               </div>
               <CardContent className="p-6">
-                <h2 className="text-xl font-bold text-center text-foreground group-hover:text-primary transition-colors">
+                <h2 className="text-xl font-bold text-center text-foreground group-hover:text-accent transition-colors">
                   {item.title}
                 </h2>
               </CardContent>
