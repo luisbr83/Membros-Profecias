@@ -25,7 +25,7 @@ const contentItems: ContentItem[] = [
     title: "Profecias Bíblicas e o Apocalipse",
     image: "https://i.imgur.com/cmcoLd8.png",
     imageHint: "man suit charisma",
-    pdfUrl: "https://drive.google.com/file/d/1GaIyUaNIRt_Ie2rbwOL0Is5UviZGUF8/preview",
+    pdfUrl: "https://drive.google.com/file/d/1GaIyUaNIRt0_Ie2rbwOL0Is5UviZGUF8/preview",
   },
   {
     id: 2,
@@ -101,14 +101,17 @@ export default function DashboardPage() {
           </Button>
         </header>
         <main className="flex-1 overflow-hidden">
-          <iframe
-            id="pdf-iframe"
-            src={selectedPdf.pdfUrl}
-            className="w-full h-full border-0"
-            title={selectedPdf.title}
-            allowFullScreen
-            allow="autoplay"
-          ></iframe>
+          <div className="relative w-full h-full">
+            <iframe
+              id="pdf-iframe"
+              src={selectedPdf.pdfUrl}
+              className="absolute w-full border-0"
+              style={{ height: 'calc(100% + 50px)', top: '-50px' }}
+              title={selectedPdf.title}
+              allowFullScreen
+              allow="autoplay"
+            ></iframe>
+          </div>
         </main>
       </div>
     );
