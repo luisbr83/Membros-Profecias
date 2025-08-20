@@ -84,7 +84,7 @@ export default function LoginPage() {
         <Card className="rounded-xl shadow-2xl border-accent/20 bg-secondary">
           <CardHeader className="p-0">
             <Image
-              src="https://placehold.co/600x400.png"
+              src="https://i.imgur.com/cmcoLd8.png"
               data-ai-hint="man suit charisma"
               alt="O Poder do Carisma"
               width={600}
@@ -137,7 +137,7 @@ export default function LoginPage() {
                   : "Já tem uma conta? Fazer login"}
               </Button>
               <Link
-                href="https://seusite.com/produto"
+                href="#"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm text-muted-foreground underline hover:text-accent"

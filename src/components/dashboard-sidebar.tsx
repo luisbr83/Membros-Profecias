@@ -21,9 +21,9 @@ export default function DashboardSidebar({
   return (
     <aside className="w-80 flex-shrink-0 bg-secondary shadow-lg flex flex-col h-full border-r border-border">
       <div className="p-6 border-b border-border">
-        <h2 className="text-2xl font-bold mb-4 text-primary">O Poder do Carisma</h2>
+        <h2 className="text-2xl font-bold mb-4 text-primary">Apocalypse Academy</h2>
         <Image
-          src="https://placehold.co/400x200.png"
+          src="https://i.imgur.com/cmcoLd8.png"
           data-ai-hint="man suit charisma"
           alt="Capa do produto"
           width={400}

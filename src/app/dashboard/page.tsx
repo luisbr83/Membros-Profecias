@@ -14,38 +14,26 @@ import { useToast } from "@/hooks/use-toast";
 const bonuses: Bonus[] = [
   {
     id: 1,
-    title: "Módulo 1: A Essência do Carisma",
+    title: "Bônus 1: Guia de Sobrevivência",
     image: "https://placehold.co/300x200.png",
-    imageHint: "charisma essence",
-    type: "video",
+    imageHint: "survival guide",
+    type: "pdf",
     content: {
-      title: "Módulo 1: A Essência do Carisma",
-      description: "Descubra os pilares fundamentais do carisma e como aplicá-los no seu dia a dia para criar conexões autênticas.",
-      url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      title: "Guia de Sobrevivência do Apocalipse",
+      description: "Um guia completo com tudo que você precisa saber para sobreviver aos fins dos tempos.",
+      url: "/guia-sobrevivencia.pdf",
     },
   },
   {
     id: 2,
-    title: "Módulo 2: Comunicação Magnética",
+    title: "Bônus 2: Mapa dos Abrigos",
     image: "https://placehold.co/300x200.png",
-    imageHint: "magnetic communication",
+    imageHint: "shelter map",
     type: "video",
     content: {
-      title: "Módulo 2: Comunicação Magnética",
-      description: "Aprenda técnicas de comunicação verbal e não verbal para cativar e influenciar pessoas em qualquer situação.",
+      title: "Mapa Interativo dos Abrigos Secretos",
+      description: "Descubra a localização dos abrigos mais seguros para se proteger durante o apocalipse.",
       url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-  },
-  {
-    id: 3,
-    title: "Ebook: O Guia do Carisma",
-    image: "https://placehold.co/300x200.png",
-    imageHint: "book charisma",
-    type: "pdf",
-    content: {
-      title: "Ebook: O Guia Definitivo do Carisma",
-      description: "Um guia completo com exercícios práticos para desenvolver seu carisma e transformar suas interações sociais e profissionais.",
-      url: "/guia-carisma.pdf",
     },
   },
 ];
@@ -112,7 +100,7 @@ export default function DashboardPage() {
      
       <main className="flex-1 flex flex-col overflow-y-auto">
          <div className="lg:hidden p-4 flex justify-between items-center border-b border-border bg-secondary">
-          <h1 className="text-xl font-bold text-primary">O Poder do Carisma</h1>
+          <h1 className="text-xl font-bold text-primary">Apocalypse Academy</h1>
           <Button variant="ghost" size="icon" onClick={() => setSidebarOpen(!sidebarOpen)}>
             {sidebarOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </Button>

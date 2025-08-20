@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'O Poder do Carisma',
+  title: 'Apocalypse Academy',
   description: 'Área de Membros Exclusiva',
 };
 
