@@ -116,8 +116,8 @@ export default function DashboardPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground">
       <header className="flex items-center justify-between p-4 border-b border-border bg-secondary">
-        <h1 className="text-xl md:text-2xl font-bold text-primary truncate">
-          Profecias Bíblicas e o Apocalipse
+        <h1 className="text-xl md:text-2xl font-bold text-foreground truncate">
+          Seja Bem-vindo (a)
         </h1>
         <Button
           variant="outline"

@@ -13,7 +13,7 @@ export default function DashboardContent({ selectedBonus }: DashboardContentProp
     return (
       <div className="flex items-center justify-center h-full text-center">
         <div className="space-y-4">
-          <h1 className="text-3xl font-bold">Bem-vindo(a) à <span className="text-primary">Profecias Bíblicas e o Apocalipse</span>!</h1>
+          <h1 className="text-3xl font-bold">Bem-vindo(a) à <span className="text-primary">Seja BemVindo (a)</span>!</h1>
           <p className="text-muted-foreground max-w-md mx-auto">
             Selecione um módulo na barra lateral para iniciar sua preparação para o fim dos tempos.
           </p>

@@ -22,7 +22,7 @@ export default function DashboardSidebar({
   return (
     <aside className="w-80 flex-shrink-0 bg-secondary shadow-lg flex flex-col h-full border-r border-border">
       <div className="p-6 border-b border-border">
-        <h2 className="text-2xl font-bold mb-4 text-primary">Profecias Bíblicas e o Apocalipse</h2>
+        <h2 className="text-2xl font-bold mb-4 text-white">Seja Bem-Vindo (a)</h2>
         <Image
           src="https://i.imgur.com/cmcoLd8.png"
           data-ai-hint="man suit charisma"
