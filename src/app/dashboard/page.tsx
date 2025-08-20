@@ -25,7 +25,7 @@ const contentItems: ContentItem[] = [
     title: "Profecias Bíblicas e o Apocalipse",
     image: "https://i.imgur.com/cmcoLd8.png",
     imageHint: "man suit charisma",
-    pdfUrl: "/profecias-biblicas-apocalipse.pdf",
+    pdfUrl: "/PBA.pdf",
   },
   {
     id: 2,
