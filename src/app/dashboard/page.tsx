@@ -25,14 +25,14 @@ const contentItems: ContentItem[] = [
     title: "Profecias Bíblicas e o Apocalipse",
     image: "https://i.imgur.com/cmcoLd8.png",
     imageHint: "man suit charisma",
-    pdfUrl: "https://drive.google.com/file/d/1GaIyUaNIRt0_Ie2rbwOL0Is5UviZGUF8/preview",
+    pdfUrl: "https://drive.google.com/file/d/1GaIyUaNIRt_Ie2rbwOL0Is5UviZGUF8/preview",
   },
   {
     id: 2,
     title: "Compreendendo o Livro do Apocalipse",
     image: "https://i.imgur.com/TCZkfFo.png",
     imageHint: "ancient book scripture",
-    pdfUrl: "/compreendendo-apocalipse-bonus.pdf",
+    pdfUrl: "https://drive.google.com/file/d/1BpX3jk-ntwleg_LgjxNBmcFMnm23Wwb6/preview",
   },
 ];
 
