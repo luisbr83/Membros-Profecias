@@ -25,7 +25,7 @@ const contentItems: ContentItem[] = [
     title: "Profecias Bíblicas e o Apocalipse",
     image: "https://i.imgur.com/cmcoLd8.png",
     imageHint: "man suit charisma",
-    pdfUrl: "/PBA.pdf",
+    pdfUrl: "https://drive.google.com/file/d/1GaIyUaNIRt0_Ie2rbwOL0Is5UviZGUF8/preview",
   },
   {
     id: 2,
@@ -107,6 +107,7 @@ export default function DashboardPage() {
             className="w-full h-full border-0"
             title={selectedPdf.title}
             allowFullScreen
+            allow="autoplay"
           ></iframe>
         </main>
       </div>
