@@ -84,9 +84,9 @@ export default function LoginPage() {
         <Card className="rounded-xl shadow-2xl border-accent/20 bg-secondary">
           <CardHeader className="p-0">
             <Image
-              src="https://i.imgur.com/cmcoLd8.png"
+              src="https://i.imgur.com/O5N7Iep.png"
               data-ai-hint="man suit charisma"
-              alt="O Poder do Carisma"
+              alt="Profecias Bíblicas e o Apocalipse"
               width={600}
               height={400}
               className="rounded-t-xl object-cover"

@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
@@ -42,6 +42,7 @@ export default function DashboardPage() {
   const [selectedPdf, setSelectedPdf] = useState<ContentItem | null>(null);
   const router = useRouter();
   const { toast } = useToast();
+  const pdfContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -68,6 +69,15 @@ export default function DashboardPage() {
     }
   };
   
+  const handleFullScreen = () => {
+    const element = pdfContainerRef.current;
+    if (element) {
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      }
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center bg-background">
@@ -89,18 +99,13 @@ export default function DashboardPage() {
           </h1>
           <Button
             variant="ghost"
-            onClick={() => {
-              const iframe = document.getElementById("pdf-iframe") as HTMLIFrameElement;
-              if (iframe && iframe.requestFullscreen) {
-                iframe.requestFullscreen();
-              }
-            }}
+            onClick={handleFullScreen}
           >
             <Maximize className="mr-2 h-4 w-4" />
             Tela Cheia
           </Button>
         </header>
-        <main className="flex-1 overflow-hidden">
+        <main ref={pdfContainerRef} className="flex-1 overflow-hidden bg-black">
           <div className="relative w-full h-full">
             <iframe
               id="pdf-iframe"
