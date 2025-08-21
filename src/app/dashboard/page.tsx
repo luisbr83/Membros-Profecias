@@ -5,11 +5,12 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, signOut, type User } from "firebase/auth";
 import { auth } from "@/lib/firebase";
-import { LogOut, X, Maximize, FileText, ArrowLeft } from "lucide-react";
+import { LogOut, Maximize, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface ContentItem {
   id: number;
@@ -40,9 +41,9 @@ export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedPdf, setSelectedPdf] = useState<ContentItem | null>(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
-  const pdfContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -68,14 +69,14 @@ export default function DashboardPage() {
       });
     }
   };
+
+  const handleOpenPdf = (item: ContentItem) => {
+    setSelectedPdf(item);
+  };
   
-  const handleFullScreen = () => {
-    const element = pdfContainerRef.current;
-    if (element) {
-      if (element.requestFullscreen) {
-        element.requestFullscreen();
-      }
-    }
+  const handleClosePdf = () => {
+    setSelectedPdf(null);
+    setIsFullScreen(false);
   };
 
   if (loading) {
@@ -88,9 +89,14 @@ export default function DashboardPage() {
 
   if (selectedPdf) {
     return (
-      <div className="flex flex-col h-screen bg-background text-foreground">
+      <div className={cn(
+        "flex flex-col bg-background text-foreground",
+        isFullScreen 
+          ? "fixed inset-0 z-50" 
+          : "relative h-screen"
+      )}>
         <header className="flex items-center justify-between p-4 border-b border-border bg-secondary flex-shrink-0">
-          <Button variant="ghost" onClick={() => setSelectedPdf(null)}>
+          <Button variant="ghost" onClick={handleClosePdf}>
             <ArrowLeft className="mr-2 h-4 w-4" />
             Voltar
           </Button>
@@ -99,13 +105,13 @@ export default function DashboardPage() {
           </h1>
           <Button
             variant="ghost"
-            onClick={handleFullScreen}
+            onClick={() => setIsFullScreen(!isFullScreen)}
           >
             <Maximize className="mr-2 h-4 w-4" />
-            Tela Cheia
+            {isFullScreen ? 'Sair da Tela Cheia' : 'Tela Cheia'}
           </Button>
         </header>
-        <main ref={pdfContainerRef} className="flex-1 overflow-hidden bg-black">
+        <main className="flex-1 overflow-hidden bg-black">
           <div className="relative w-full h-full">
             <iframe
               id="pdf-iframe"
@@ -113,7 +119,6 @@ export default function DashboardPage() {
               className="absolute w-full border-0"
               style={{ height: 'calc(100% + 50px)', top: '-50px' }}
               title={selectedPdf.title}
-              allowFullScreen
               allow="autoplay"
             ></iframe>
           </div>
@@ -143,7 +148,7 @@ export default function DashboardPage() {
           {contentItems.map((item) => (
             <Card
               key={item.id}
-              onClick={() => setSelectedPdf(item)}
+              onClick={() => handleOpenPdf(item)}
               className="group rounded-xl shadow-lg overflow-hidden bg-secondary border border-accent/20 cursor-pointer transition-all duration-300 hover:border-accent hover:shadow-accent/20 hover:-translate-y-1"
             >
               <div className="relative">
